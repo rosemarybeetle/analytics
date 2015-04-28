@@ -33,6 +33,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 function vulgarisor() {
 
 var result="";
+var abort=0; // used to stop testing if dealbreaker condition is met
 var baked_ratio=50;
 var reliability="Unknown";
 var baked_result_default="Insufficient data to assess";
@@ -40,8 +41,11 @@ var baked_result=baked_result_default;
 // @@@@@@@@@@@@@@@@@@@@@@@
 
 // 1. what was eaten --------------------
-var l_last_eaten="not answered";
-l_last_eaten=document.getElementById("last_eaten").value; // simple text field - no checking needed
+
+var last_eaten_val=document.getElementById("last_eaten").value; // simple text field - only checking needed is empty field
+if (last_eaten_val==""){
+	last_eaten_val='not answered';
+}
 
 // @@@@@@@@@@@@@@@@@@@@@@@
 
@@ -56,76 +60,133 @@ for(var i = 0; i < weekly_eatens.length; i++){
 }
 
 // @@@@@@@@@@@@@@@@@@@@@@@
+// 3. check values in brioche radio buttons ===================
+
+brioches = document.getElementsByName('brioche');
+var brioche_val = "not answered";
+for(var i = 0; i < brioches.length; i++){
+    if(brioches[i].checked){
+        brioche_val = brioches[i].value;
+    }
+}
+// @@@@@@@@@@@@@@@@@@@@@@@
+// 4. check values in pat_vicinity radio buttons ===================
+
+pat_vicinitys = document.getElementsByName('pat_vicinity');
+var pat_vicinity_val = "not answered";
+for(var i = 0; i < pat_vicinitys.length; i++){
+    if(pat_vicinitys[i].checked){
+        pat_vicinity_val = pat_vicinitys[i].value;
+    }
+}
+// @@@@@@@@@@@@@@@@@@@@@@@
 
 
-result= '"last_eaten" = '+ l_last_eaten+ ', "weekly_eaten_val" = '+weekly_eaten_val;
+// 5. check range values 
+var pub_val
+pub_val=document.getElementById("pub").value; // simple range field - no checking needed
+
+// @@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+// start algorithm >>>>>>>>>>>>>>>>>>>>
+
+if (weekly_eaten_val=="0"){
+baked_result="Terminate assessment - health-freak spoiling it for everyone.";
+abort=1;
+}
+// return baked_result;
+if (abort!=1){ // start abort loop 1
+if (weekly_eaten_val=="1-2") {
+reliability="Subject lies about their eating habits.";
+baked_result="Subject does scoff baked stuff";
+} else if (weekly_eaten_val=="0-11") {
+reliability="Subject seems trustworthy.";
+baked_result="Average baked-goods eater. A bit non-committed to the cause, though perhaps.";
+}else if (weekly_eaten_val=="12+") {
+reliability="Subject seems trustworthy";
+baked_result="Solid hearty Eater. Appreciates the baked-goods lifestyle.";
+} else if (weekly_eaten_val=="12+s") {
+reliability="Self-deluded";
+baked_result="Commendable - subject likes baked-goods sufficiently to over-eat, but potentially too reckless to leave alone with quality goods.";
+}
+} // end abort loop 1
+
+if (abort!=1){ // start abort loop 2
+if ( brioche_val=="yes" ) {
+baked_result="Sweet toothed tendency.";
+} else if ( brioche_val=="no" ){
+baked_result="Savoury bent.";
+} else if ( brioche_val=="Not sure" ){
+baked_result="Reject subject. Lack of committment";
+abort=1;
+// return baked_result;
+}
+} // end abort loop 2
+
+if (abort!=1){ // start abort loop 3
+if (pat_vicinity_val=="yes")
+{
+reliability="At least their know where to truffle for goodies";
+baked_result+="Experienced baked goods eater";
+} else if (pat_vicinity_val=="no") {
+reliability="Some empathy for bakery-stomach syndrome shown.";
+baked_result="Have made some effort to root out goodies";
+abort=1;
+// return baked_result;
+}
+} // end abort loop 3
+
+if (abort!=1){ // start abort loop 4
+
+if (pat_vicinity_val=="Don't know") {
+reliability="Insufficient committment shown.";
+baked_result="Reject subject as lack-lustre.";
+abort=1;
+// return baked_result;
+}
+} // end abort loop 4
+
+if (abort!=1){ // start abort loop 5
+if (pub_val==0){
+reliability="Unconvincing fashion victim.";
+baked_result="Reject subject - trendiness shown over bake-worthiness.";
+abort=1;
+// return baked_result;
+}
+} // end abort loop 5;
+
+if (abort!=1){ // start abort loop 6
+if ((pub_val>0) && (pub_val<7)) {
+reliability="Commended - subject considers bake-worthiness.";
+baked_result="Yes. very good - evidence of breadth of scoffs shown.";
+abort=1;
+// return baked_result;
+}
+} // end abort loop 6
+
+if (abort!=1){ // start abort loop 7
+if (pub_val>6) {
+reliability="Early promise undermined - subject distracted by non-bakery temptations.";
+baked_result="Could have been great. Let themselves down and let baking down, with disappointing attitude.";
+// return baked_result;
+}
+} // end abort loop 7
+
+var lux_date = new Date();
+
+var sub_date= '"Submitted: '+lux_date.getDate()+'/'+(lux_date.getMonth()+1)+'/'+lux_date.getFullYear()+'"';
+// return sub_date;
+result= sub_date+','+last_eaten_val+ ','+weekly_eaten_val+','+brioche_val+','+pat_vicinity_val+','+ pub_val+','+reliability+','+baked_result;
 alert (result);
 console.log(result);
-// var l_weekly_eaten=document.getElementByName("weekly_eaten").value;
-// var l_brioche=document.getElementByName("brioche").value;
-// var l_pat_vicinity=document.getElementByName("pat_vicinity").value;
-// var l_gastro_rating=document.getElementByName("gastro_rating").value;
-
-
-// if (l_weekly_eaten=="0"){
-// baked_result="Terminate assessment - health-freak spoiling it for everyone.";
-// return baked_result;
-// } else if (l_weekly_eaten=="1-2") {
-// reliability="Subject lies about their eating habits.";
-// baked_result="Subject does scoff baked stuff";
-// } else if (l_weekly_eaten=="0-11") {
-// reliability="Subject seems trustworthy.";
-// baked_result="Average baked-goods eater. A bit non-committed to the cause, though perhaps.";
-// }else if (l_weekly_eaten=="12+") {
-// reliability="Subject seems trustworthy";
-// baked_result="Solid hearty Eater. Appreciates the baked-goods lifestyle.";
-// } else if (l_weekly_eaten=="12+s") {
-// reliability="Self-deluded";
-// baked_result="Commendable - subject likes baked-goods sufficiently to over-eat, but potentially too reckless to leave alone with quality goods.";
-// }
-
-// if ( l_brioche=="yes" ) {
-// baked_result+="Sweet toothed tendency.";
-// } else if ( l_brioche=="no" ){
-// baked_result+="Savoury bent.";
-// } else if ( l_brioche=="Not sure" ){
-// baked_result="Reject subject. Lack of committment";
-// return baked_result;
-// }
-
-// if (l_pat_vicinity=="yes")
-// {
-// reliability+="At least their know where to truffle for goodies";
-// baked_result+="Experienced baked goods eater";
-// } else if (l_pat_vicinity=="no") {
-// reliability+="Some empathy for bakery-stomach syndrome shown.";
-// baked_result+="Have made some effort to root out goodies";
-// return baked_result;
-
-// } else if (l_pat_vicinity=="Don't know") {
-// reliability+="Insufficient committment shown.";
-// baked_result+="Reject subject as lack-lustre.";
-// return baked_result;
-// }
-
-// if (gastro_rating==0){
-// reliability+="Unconvincing fashion victim.";
-// baked_result+="Reject subject - trendiness shown over bake-worthiness.";
-// return baked_result;
-// } else if ((gastro_rating>0) AND (gastro_rating<7)) {
-// reliability+="Commended - subject considers bake-worthiness.";
-// baked_result+="Yes, very good - evidence of breadth of scoffs shown.";
-// return baked_result;
-// } else if (gastro_rating>6) {
-// reliability+="Early promise undermined - subject distracted by non-bakery temptations.";
-// baked_result+="Could have been great. Let themselves down and let baking down, with disappointing attitude.";
-// return baked_result;
-// }
-
-// }
-
 
 }
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 // @@@@@@@@@@@@@@@@@@@@@  END OF VULGARISOR @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -134,16 +195,7 @@ function hello()
 	alert('hello world');
 }
 </script>
-<form onsubmit="myFunction()">
-  Enter name: <input type="text" name="fname">
-  <input type="submit" value="Submit">
-</form>
 
-<script>
-function myFunction() {
-    alert("The form was submitted");
-}
-</script>
 
 <form style="font-color:white;" id="baked_goods_test" onsubmit="vulgarisor()">
 
@@ -165,15 +217,15 @@ How many individual baked goods items do you eat each week? (count every one)<br
 <input name="weekly_eaten" type="radio" value="loads" id="we_loads" />Huge expanses - I love scoffing baked stuff<br />
 <br /><br />
 Would you say a brioche is bread or a cake?<br />
-<input type="radio" name="brioche" value="yes" id="br_yes">Bread<br />
-<input type="radio" name="brioche" value="no" id="br_no">Cake<br />
-<input type="radio" name="brioche" value="Not sure" id="br_ns">Not sure<br /><br />
+<input type="radio" name="brioche" value="bread" id="br_yes">Bread<br />
+<input type="radio" name="brioche" value="cake" id="br_no">Cake<br />
+<input type="radio" name="brioche" value="not sure" id="br_ns">Not sure<br /><br />
 
 
 Is there a patisserie within 10 miles or your home?<br />
-<input type="radio" id="pat_vicinity" value="yes" id="pat_yes">Yes<br />
-<input type="radio" id="pat_vicinity" value="no" id="pat_no">No<br />
-<input type="radio" id="pat_vicinity" value="Don't know" id="pat_dk">Don't know<br /><br />
+<input type="radio" name="pat_vicinity" value="yes" id="pat_yes">Yes<br />
+<input type="radio" name="pat_vicinity" value="no" id="pat_no">No<br />
+<input type="radio" name="pat_vicinity" value="Don't know" id="pat_dk">Don't know<br /><br />
 
 On a scale of 1-10, which is better?<br />
 Gastro Pub <input type="range" name="gastro_rating" min="0" max="10" step="1"  id="pub"> Local Boozer 
