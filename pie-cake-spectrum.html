@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+	
+	<link href="form-style.css" rel="stylesheet" type="text/css" />
+	<script language="javascript" src="main.js">
+	</script>
+	
+<script type="text/javascript" src="myscript.js">
+
+</script>
+
+
+
+<script type="text/javascript" src="../ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<title></title>
+	<meta content="notetab light 7.1 (www.notetab.com)" name="generator" />
+	<meta content="2013-07-13" name="created" />
+</head>
+<body style="font-color:white;">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WJDM5X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WJDM5X');</script>
+<!-- End Google Tag Manager -->
+
+<p><script type="text/javascript">
+
+
+
+$(document).ready(function(){
+
+$("p").css("background-color","yellow");
+
+ $("#msgid").html("This is Hello World by JQuery");
+
+});
+
+
+
+</script></p>
+
+<div id="topnav"><img src="https://farm4.staticflickr.com/3729/buddyicons/94931172@N00_l.jpg" style="float: left;padding-right:2px;" />
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<h1>rosemarybeetle labs... Pie or Cake?...</h1>
+
+<p>We all lie somewhere on the "sweet-savoury baked goods preference-spectrum".<br />Due to recent advances, food scientists have now developed a reliable test to help you manage your baked goods lifestyle choices.</p>
+
+<script >
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@  VULGARISOR @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+function vulgarisor() {
+	alert('hello world');
+var baked_ratio=50;
+var reliability="Unknown";
+var baked_result_default="Insufficient data to assess";
+var baked_result=baked_result_default;
+
+var l_last_eaten=document.getElementByName("last_eaten").value; // simple text field - no checking needed
+
+// ===============  check values in weekly_eaten radio buttons ===================
+var weekly_eatens = document.getElementsByName('weekly_eaten');
+var weekly_eaten_val;
+for(var i = 0; i < weekly_eatens.length; i++){
+    if(weekly_eatens[i].checked){
+        weekly_eaten_val = weekly_eatens[i].value;
+    }
+}
+// ===============================   end weekly_eatens ===========================
+alert ('last_eaten = '+ l_last_eaten+ ' weekly_eatens = '+weekly_eatens);
+return 'last_eaten = '+ last_eaten+ ' weekly_eatens = '+weekly_eatens;
+// var l_weekly_eaten=document.getElementByName("weekly_eaten").value;
+var l_brioche=document.getElementByName("brioche").value;
+var l_pat_vicinity=document.getElementByName("pat_vicinity").value;
+var l_gastro_rating=document.getElementByName("gastro_rating").value;
+
+
+if (l_weekly_eaten=="0"){
+baked_result="Terminate assessment - health-freak spoiling it for everyone.";
+return baked_result;
+} else if (l_weekly_eaten=="1-2") {
+reliability="Subject lies about their eating habits.";
+baked_result="Subject does scoff baked stuff";
+} else if (l_weekly_eaten=="0-11") {
+reliability="Subject seems trustworthy.";
+baked_result="Average baked-goods eater. A bit non-committed to the cause, though perhaps.";
+}else if (l_weekly_eaten=="12+") {
+reliability="Subject seems trustworthy";
+baked_result="Solid hearty Eater. Appreciates the baked-goods lifestyle.";
+} else if (l_weekly_eaten=="12+s") {
+reliability="Self-deluded";
+baked_result="Commendable - subject likes baked-goods sufficiently to over-eat, but potentially too reckless to leave alone with quality goods.";
+}
+
+if ( l_brioche=="yes" ) {
+baked_result+="Sweet toothed tendency.";
+} else if ( l_brioche=="no" ){
+baked_result+="Savoury bent.";
+} else if ( l_brioche=="Not sure" ){
+baked_result="Reject subject. Lack of committment";
+return baked_result;
+}
+
+if (l_pat_vicinity=="yes")
+{
+reliability+="At least their know where to truffle for goodies";
+baked_result+="Experienced baked goods eater";
+} else if (l_pat_vicinity=="no") {
+reliability+="Some empathy for bakery-stomach syndrome shown.";
+baked_result+="Have made some effort to root out goodies";
+return baked_result;
+
+} else if (l_pat_vicinity=="Don't know") {
+reliability+="Insufficient committment shown.";
+baked_result+="Reject subject as lack-lustre.";
+return baked_result;
+}
+
+if (gastro_rating==0){
+reliability+="Unconvincing fashion victim.";
+baked_result+="Reject subject - trendiness shown over bake-worthiness.";
+return baked_result;
+} else if ((gastro_rating>0) AND (gastro_rating<7)) {
+reliability+="Commended - subject considers bake-worthiness.";
+baked_result+="Yes, very good - evidence of breadth of scoffs shown.";
+return baked_result;
+} else if (gastro_rating>6) {
+reliability+="Early promise undermined - subject distracted by non-bakery temptations.";
+baked_result+="Could have been great. Let themselves down and let baking down, with disappointing attitude.";
+return baked_result;
+}
+
+}
+
+
+}
+
+// @@@@@@@@@@@@@@@@@@@@@  END OF VULGARISOR @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+function hello()
+{
+	alert('hello world');
+}
+</script>
+
+<form style="font-color:white;" id="baked_goods_test" onSubmit="vulgarisor()">
+
+Start here<br />
+<br />
+<br />
+What was the last baked goods item you devoured?
+<br />
+<input type= "text" name="last_eaten" id="last_eaten">
+<br /><br />
+
+
+How many individual baked goods items do you eat each week? (count every one)<br />
+<input name="weekly_eaten" type="radio" value="0" id="we_0"/>None<br />
+<input name="weekly_eaten" type="radio" value="1-2" id="we_1-2"/>One or two<br />
+<input name="weekly_eaten" type="radio" value="0-11" id="we_0-11" />Less than a dozen<br />
+<input name="weekly_eaten" type="radio" value="12+" id="we_12+" />At least a dozen or more<br />
+<input name="weekly_eaten" type="radio" value="12+s" id="we_12+s" />At least a dozen or more, but usually small ones<br />
+<input name="weekly_eaten" type="radio" value="loads" id="we_loads" />Huge expanses - I love scoffing baked stuff<br />
+<br /><br />
+Would you say a brioche is bread or a cake?<br />
+<input type="radio" name="brioche" value="yes" id="br_yes">Bread<br />
+<input type="radio" name="brioche" value="no" id="br_no">Cake<br />
+<input type="radio" name="brioche" value="Not sure" id="br_ns">Not sure<br /><br />
+
+
+Is there a patisserie within 10 miles or your home?<br />
+<input type="radio" id="pat_vicinity" value="yes" id="pat_yes">Yes<br />
+<input type="radio" id="pat_vicinity" value="no" id="pat_no">No<br />
+<input type="radio" id="pat_vicinity" value="Don't know" id="pat_dk">Don't know<br /><br />
+
+On a scale of 1-10, which is better?<br />
+Gastro Pub <input type="range" name="gastro_rating" min="0" max="10" step="1"  id="pub"> Local Boozer 
+<br /><br /><br />
+
+<input type="submit" value="Scutinise my baked-goods lifestyle-habits, good people!" onClick="hello()" >
+</form>
+
+</body>
+</html>
